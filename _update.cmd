@@ -12,6 +12,7 @@ for /F "delims=*" %%S in ('dir /b/o:-d tiles\*.svg') do (
 
 rem set names~
 
+set "komma= "
 echo [>fliesen.json
 for /F "delims== tokens=2" %%T in ('set tile~') do call :add %%T >>fliesen.json
 rem for /F "delims=*" %%S in ('dir /b/o:-d tiles\*.svg') do call :add %%S >>fliesen.json
