@@ -1,3 +1,6 @@
+const mirrorWidth = 8;
+const mirrorHeight = 4;
+
 function copy(type, winkel, parent) {
   let src = document.getElementById(type);
   if(src.nodeName==='OBJECT'){
@@ -92,7 +95,7 @@ function loadTiles(){
           editor.querySelectorAll(":scope>*:not(.fliese)")
             .forEach(e=>e.remove());
           console.log("tiles prepared")
-          
+
           return tileIds;
         });
     })
@@ -105,7 +108,7 @@ function loadTiles(){
 function toggleTile(evt){
   let tile = evt.target;
   let viewer = document.getElementById("viewer");
-  
+
 }
 
 function loadPatterns(){
@@ -170,40 +173,47 @@ function mergeSvg(spiegel){
   let tileH = 128;
   let vpW = 320;
   let vpH = 320;
-  
+
+  let rows = spiegel.querySelectorAll('.sample');
+  let firstRow = rows[0].querySelectorAll('.fliese');
+
+  let patternViewW = firstRow.length;
+  let patternViewH = rows.length;
+  console.debug("colsxrows", patternViewW, "x", patternViewH);
+
   svg.setAttribute('version', '1.1');
-  svg.setAttribute('width', (tileViewW*8)+'px');
-  svg.setAttribute('height', (tileViewH*4)+'px');
+  svg.setAttribute('width', (tileViewW*patternViewW)+'px');
+  svg.setAttribute('height', (tileViewH*patternViewH)+'px');
   svg.setAttribute('viewBox',
-      '0 0 '+(vpW*8)+' '+(vpH*4));
+      '0 0 '+(vpW*patternViewW)+' '+(vpH*patternViewH));
   svg.setAttribute('style', ''
-    + 'width:'+(tileViewW*8)+'px;'
-    + 'height:'+(tileViewH*4)+'px;'
+    + 'width:'+(tileViewW*patternViewW)+'px;'
+    + 'height:'+(tileViewH*patternViewH)+'px;'
   );
-  
+
   let defs = document.createElementNS(SVGNS, 'defs');
   defs.innerHTML = ''
     +'<clipPath id="tileClip" clipPathUnits="userSpaceOnUse">'
     +'<rect x="0" y="0" width="'+(vpW)+'" height="'+(vpH)+'"/>'
     +'</clipPath>'
   svg.append(defs);
-    
+
   let block=0;
   console.debug(spiegel);
-  for(let s of spiegel.querySelectorAll('.sample')){
-    console.debug(block, s);
+  for(let r of rows){
+    //console.debug(block, r);
     let tile=0;
-    for(let t of s.querySelectorAll('.fliese')){
-      console.debug(block, tile, t);
-      
+    for(let t of r.querySelectorAll('.fliese')){
+
       let orgTransform = t.getAttribute('transform')||'';
-      
-      let pos=4*block+tile;
-      let x=vpW*(pos%8);
-      let y=vpH*Math.floor(pos/8);
+
+      let pos=patternViewW*block+tile;
+      let x=vpW*(pos%patternViewW);
+      let y=vpH*Math.floor(pos/patternViewW);
+      console.debug(pos,block, tile,y,x);
       let g = document.createElementNS(SVGNS, 'g');
       g.setAttribute('clip-path', 'url(#tileClip)');
-      
+
       g.setAttribute('transform',''
          +' '+'translate('+(x+vpW/2)+','+(y+vpH/2)+')'
          +' '+orgTransform
@@ -218,19 +228,19 @@ function mergeSvg(spiegel){
       dbg.setAttribute('width', vpW);
       dbg.setAttribute('height', vpH);
       //g.append(dbg);
-      
+
       for(let c of t.children) {
         g.append(c.cloneNode(true));
       }
-      
+
       svg.append(g);
-      
+
       //break;
       ++tile;
     }
     //break;
     ++block;
   }
-  
+
   return svg;
 }

@@ -24,17 +24,21 @@ function rotateTile(evt){
   updateSinglePattern(tile.closest('.spiegel'), window.tilepattern);
   updateSinglePattern(window.editorSample, window.tilepattern);
   
-  
+  writeOutput(window.tilepattern);
+}
+function writeOutput(pattern){
   output.textContent = '"newpattern":\n  [';
-  let raw = window.tilepattern.flat();
+  let raw = pattern.flat();
+  let patternW = window.tilepattern[0].length;
+  let patternH = raw.length / patternW;
   var line='';
   raw.forEach((r,i)=>{
     line+=
          (i>0?', ':'')
-        +(i%8==0?'\n    ':'')
-        +(i%4==0?'[':'')
+        +(i%patternW==0?'\n    ':'')
+        +(i%patternW==0?'[':'')
         +r
-        +(i%4==3?']':'')
+        +(i%patternW==(patternW-1)?']':'')
   })
   output.textContent += line+'\n  ]';
 }
@@ -57,9 +61,10 @@ function initEditor(data){
   if(!("tilepattern" in window) && tilepatterns)
     window.tilepattern = Object.values(tilepatterns)[0];
   let raw = window.tilepattern.flat();
+  let patternWidth = window.tilepattern[0].length;
   let workcopy = [];
-  for(let i=0;i<raw.length;i+=4){
-    workcopy.push(raw.slice(i,i+4));
+  for(let i=0;i<raw.length;i+=patternWidth){
+    workcopy.push(raw.slice(i,i+patternWidth));
   }
   window.tilepattern = workcopy;
   //console.log(workcopy);
@@ -69,9 +74,9 @@ function initEditor(data){
 function createCustom(pattern){
 
   pattern["custom"] = []
-  for(var j=0;j<8;j++){
+  for(var j=0;j<mirrorHeight;j++){
     let row = [];
-    for(var i=0;i<4;i++){
+    for(var i=0;i<mirrorWidth;i++){
       row[i] = Math.floor(Math.random()*4);
     }
     pattern["custom"][j] = row;
