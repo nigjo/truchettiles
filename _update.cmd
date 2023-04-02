@@ -10,7 +10,8 @@ for /F "delims=*" %%S in ('dir /b/o:-d tiles\*.svg') do (
  if not defined names~%%~nS call :define %%S
 )
 
-rem set names~
+REM set names~
+REM set tiles~
 
 set "komma= "
 echo [>fliesen.json
@@ -25,6 +26,9 @@ set komma=,
 
 goto :eof
 :define
+set file=tiles\%~n1
+if not exist "%file%.svg" goto :eof
+
 REM set /a counter-=1
 set num=0000%counter%
 set tile~%num:~-4%=%~n1
