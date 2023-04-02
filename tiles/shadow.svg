@@ -1,0 +1,10 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 320 320" width="64px" height="64px">
+  <!-- <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="fliesen.css"/> -->
+  <path d="M0,96 L96,0,224,0,0,224 z" class="bg"/>
+  <line x1="0" y1="96" x2="96" y2="0" class="out"/>
+  
+  <path d="M320,96 L96,320,224,320,320,224 z" class="bg"/>
+  <line x1="320" y1="96" x2="96" y2="320" class="out"/>
+  <!--<line x1="320" y1="224" x2="224" y2="320" class="out"/>-->
+</svg>

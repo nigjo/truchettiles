@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Truchet Fliesen</title>
+    <link rel="shortcut icon" type="image/png" href="res/favicon.png">
+    <link rel="stylesheet" href="res/fliesen.css">
+    <script src="res/fliesen.js"></script>
+    <script>
+    function toggleMainClass(input){
+      let main = document.querySelector("main");
+      if(input.checked){
+        main.classList.add(input.dataset.class);
+      }else{
+        main.classList.remove(input.dataset.class);
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <header><h1>Truchet Fliesen</h1></header>
+    <nav>
+      <ul>
+        <li><a href="editor.html">Editor</a></li>
+      </ul>
+    </nav>
+    <main>
+      <div id="options">
+        <label><input type="checkbox" data-class="grid" onclick="toggleMainClass(this)"> Gitternetz</label>
+        <div>
+        <select id="patternType" onchange="updatePattern()"><option>default</select>
+        </div>
+      </div>
+      <div id="tiles">
+      <p>loading</p>
+      </div>
+      <div id="viewer" class="spiegelsaal"></div>
+    </main>
+    <footer>&copy; Jens Hofschröer 2023</footer>
+    <script>
+      let viewer = document.getElementById('viewer');
+      loadTiles()
+        .then(ids=>ids.forEach(id=>copySamples(viewer,id)));
+      loadPatterns()
+        .then(createAllPatterns);
+    </script>
+  </body>
+</html>

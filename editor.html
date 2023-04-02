@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Truchet Fliesen - Editor</title>
+    <link rel="shortcut icon" type="image/png" href="res/favicon.png">
+    <link rel="stylesheet" href="res/fliesen.css">
+    <script src="res/fliesen.js"></script>
+    <script src="res/editor.js"></script>
+  </head>
+  <body>
+    <header><h1>Truchet Fliesen</h1></header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Übersicht</a></li>
+      </ul>
+    </nav>
+    <main>
+    <div id="tiles"></div>
+    <div id="editor" class="spiegelsaal"></div>
+    <div id="output"></div>
+    <div id="merged" class="spiegel"></div>
+    <div id="options">
+      <div class="row">
+        <select id="patternType" onchange="updatePattern()"><option>default</select>
+      </div>
+      <div><input type="button" value="Hintergrund setzen" onclick="createBackground()"></div>
+    </div>
+    </main>
+    <footer>&copy; Jens Hofschröer 2023</footer>
+    <script>
+      Promise.all([
+        loadPatterns()
+          .then(createAllPatterns)
+          .then(createCustom),
+        loadTiles()
+      ])
+      .then(initEditor);
+    </script>
+  </body>
+</html>

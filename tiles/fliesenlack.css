@@ -1,0 +1,18 @@
+:root{
+  --col:blue;
+  --grid:lightblue;
+  --bg:lightgray;
+}
+.filled{
+  fill:var(--col) !important;
+  stroke:none;
+}
+.bg{
+  fill:var(--bg) !important;
+  stroke:none;
+}
+.out{
+  fill:none;
+  stroke:var(--col) !important;
+  stroke-width:8px;
+}

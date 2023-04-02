@@ -1,0 +1,57 @@
+@import url('../tiles/fliesenlack.css');
+
+:root{
+  --grid:lightblue;
+}
+
+body{
+  font-family:sans-serif;
+}
+.fliese, .spiegel svg{
+  display:inline-block;
+  width:48px;
+  height:48px;
+  background-color:white;
+}
+.spiegel {
+  display: inline-grid;
+  position:relative;
+  margin: .5em;
+  grid-template-columns: 1fr 1fr;
+  border:1px solid var(--grid);
+}
+.spiegel:after{
+  content:attr(data-type);
+  font-size:.66em;
+  position:absolute;
+  bottom:-1.2em;
+  right:0em;
+  color:dimgray;
+}
+.sample{
+  display:flex;
+}
+.spiegel svg{
+  box-sizing:border-box;
+}
+#tiles div.fliese{
+  border:1px solid var(--grid);
+  margin-right:1em;
+  margin-bottom:.5em;
+  position:relative;
+}
+#tiles div.fliese:after{
+  content: attr(data-type);
+  position:absolute;
+  font-size:.5em;
+  color:dimgray;
+  bottom:-1.25em;
+  right:0em;
+}
+main.grid .spiegelsaal .fliese {
+  border:1px solid var(--grid);
+}
+#output{
+  font-family: Consolas,Courier New,monospace;
+  white-space:pre;
+}
