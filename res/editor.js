@@ -1,14 +1,11 @@
 function toggleTile(evt){
-  //console.debug(evt);
-  
   let tile = evt.target.closest(".fliese");
-  
-  window.editorSample.remove();
-  window.editorSample = 
-    copySamples(
-      document.getElementById("editor"), 
-      tile.id);
-  
+  replaceEditorSample(tile.id);
+}  
+function replaceEditorSample(tile){
+  let mirror = makeTileMirror(tile);
+  window.editorSample.replaceWith(mirror);
+  window.editorSample = mirror;
 }
 function rotateTile(evt){
   let tile = evt.target.closest(".fliese");
@@ -43,18 +40,14 @@ function writeOutput(pattern){
   output.textContent += line+'\n  ]';
 }
 function createMirrors(pattern){
-  let editor = 
-    copySamples(
-      document.getElementById("editor"), 
-      "arrow");
+  let editor = makeTileMirror("arrow");
   editor.classList.add("tilehover");
+  document.getElementById("editor").append(editor);
   [...editor.querySelectorAll(".fliese")]
     .forEach(f=>f.onclick=rotateTile);
 
-  window.editorSample = 
-    copySamples(
-      document.getElementById("editor"), 
-      pattern);
+  window.editorSample = makeTileMirror(pattern);
+  document.getElementById("editor").append(window.editorSample);
 }
 function initEditor(data){
   //console.debug("alles fertig",data[0],data[1]);

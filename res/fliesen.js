@@ -19,32 +19,37 @@ function copy(type, winkel, parent) {
   parent.append(cpy);
 }
 
-function copySamples(target, type) {
-  //console.debug(type, target);
-  let copy = document.createElement('div');
-  copy.className = "spiegel";
-  copy.dataset.type = type;
-  makeTileMirror(copy, type);
-  target.append(copy);
-  return copy;
+function addSampleTo(target, type) {
+  // //console.debug(type, target);
+  let mirror = makeTileMirror(type);
+  target.append(mirror);
+  // return mirror;
 }
 
-function makeTileMirror(target, type) {
+function makeTileMirror(type) {
   if(!("tilepattern" in window) && tilepatterns)
     window.tilepattern = Object.values(tilepatterns)[0];
   if(window.tilepattern){
-    //console.debug(document.currentScript, type);
-    for (let row of tilepattern) {
-      let rowdiv = document.createElement('div');
-      rowdiv.className = 'sample';
-      for (let cell of row) {
-        copy(type, 90 * cell, rowdiv);
-      }
-      target.append(rowdiv);
-    }
+    return makeMirrorFromPattern(type, window.tilepattern);
   }else{
     console.warn("kein pattern definiert");
   }
+}
+
+function makeMirrorFromPattern(tile, pattern) {
+  let mirror = document.createElement('div');
+  mirror.className = "spiegel";
+  mirror.dataset.type = tile;
+  //console.debug(document.currentScript, type);
+  for (let row of pattern) {
+    let rowdiv = document.createElement('div');
+    rowdiv.className = 'sample';
+    for (let cell of row) {
+      copy(tile, 90 * cell, rowdiv);
+    }
+    mirror.append(rowdiv);
+  }
+  return mirror;
 }
 
 
@@ -149,18 +154,32 @@ function updatePattern(){
   }
 }
 
-function updateSinglePattern(target, pattern){
-    //console.debug(target);
-    let samples = target.querySelectorAll(".sample");
+function replaceMirror(original, tile){
+  let mirror = makeTileMirror(tile);
+  original.replaceWith(mirror);
+  return mirror;
+}
+
+function updateSinglePattern(target, pattern, displayWidth, displayHeight){
+  //console.debug(target);
+  displayWidth = displayWidth | pattern[0].length;
+  displayHeight = displayHeight | pattern.length;
+  
+  let samples = target.querySelectorAll(".sample");
+  if(displayHeight!==samples.length
+    || displayWidth!==samples[0].children.length){
+    replaceMirror(target, target.dataset.type);
+  } else {
     for(let r=0;r<pattern.length;r++){
       //console.debug(r,samples[r]);
-      for(let c=0;c<pattern[r].length;c++){
+      for(let c=0;c<displayWidth;c++){
         let winkel = 90*pattern[r][c];
         samples[r].children[c]
           // .style.transform = "rotate(" + winkel + "deg)";
           .setAttribute('transform', "rotate(" + winkel + ")");
       }
     }
+  }
 }
 
 const SVGNS='http://www.w3.org/2000/svg';
