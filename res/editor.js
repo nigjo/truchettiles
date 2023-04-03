@@ -2,13 +2,18 @@ function toggleTile(evt){
   let tile = evt.target.closest(".fliese");
   replaceEditorSample(tile.id);
 }  
+
 function replaceEditorSample(tile){
-  let mirror = makeTileMirror(tile);
-  window.editorSample.replaceWith(mirror);
-  window.editorSample = mirror;
+  let mirror = replaceMirror(
+    document.getElementById("editorSample"),tile);
 }
+
 function rotateTile(evt){
+  
   let tile = evt.target.closest(".fliese");
+  if(!tile){
+    return;
+  }
   //console.debug(tile);
   let parent = tile.parentNode;
   let c = [...parent.children].indexOf(tile);
@@ -19,7 +24,7 @@ function rotateTile(evt){
   //console.debug(window.workcopy[r][c]);
   
   updateSinglePattern(tile.closest('.spiegel'), window.tilepattern);
-  updateSinglePattern(window.editorSample, window.tilepattern);
+  updateSinglePattern(document.getElementById("editorSample"), window.tilepattern);
   
   writeOutput(window.tilepattern);
 }
@@ -42,12 +47,15 @@ function writeOutput(pattern){
 function createMirrors(pattern){
   let editor = makeTileMirror("arrow");
   editor.classList.add("tilehover");
+  editor.onclick = rotateTile;
   document.getElementById("editor").append(editor);
-  [...editor.querySelectorAll(".fliese")]
-    .forEach(f=>f.onclick=rotateTile);
+  // [...editor.querySelectorAll(".fliese")]
+    // .forEach(f=>f.onclick=rotateTile);
 
-  window.editorSample = makeTileMirror(pattern);
-  document.getElementById("editor").append(window.editorSample);
+  let editorSample = makeTileMirror(pattern);
+  editorSample.id = "editorSample";
+  //console.debug('createMirrors', editorSample);
+  document.getElementById("editor").append(editorSample);
 }
 function initEditor(data){
   //console.debug("alles fertig",data[0],data[1]);

@@ -156,6 +156,8 @@ function updatePattern(){
 
 function replaceMirror(original, tile){
   let mirror = makeTileMirror(tile);
+  mirror.onclick = original.onclick;
+  mirror.id = original.id;
   original.replaceWith(mirror);
   return mirror;
 }
