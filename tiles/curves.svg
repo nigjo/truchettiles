@@ -1,0 +1,11 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 320 320" width="64px" height="64px">
+  <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="fliesenlack.css"/>
+
+  <circle cx="0" cy="160" r="80" class="out"/>
+  <circle cx="320" cy="0" r="80" class="out"/>
+  
+  <path d="M240,320L240,160A80,80,0,0,0,160,80A80,80,0,0,1,80,0" class="out"/>
+  <path d="M320,240L160,240A80,80,0,0,0,80,320" class="out"/>
+
+</svg>

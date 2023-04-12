@@ -1,0 +1,27 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 320 320" width="64px" height="64px">
+  <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="fliesenlack.css"/>
+  
+  <!-- <rect x="0" y="0" width="320" height="320" fill="lightgray"/> -->
+
+  <g id="bigbow">
+    <!-- <rect x="0" y="0" width="160" height="32" class="filled"/> -->
+    <!-- <rect x="0" y="0" width="32" height="160" class="filled"/> -->
+
+    <rect x="64" y="64" width="96" height="32" class="filled"/>
+    <rect x="64" y="64" width="32" height="96" class="filled"/>
+
+    <rect x="128" y="128" width="32" height="32" class="filled"/>
+  </g>
+  <use href="#bigbow" transform="translate(320,320) rotate(180) "/>
+
+  <g id="lilbow" transform="translate(160,0)">
+    <rect x="0" y="32" width="128" height="32" class="filled"/>
+    <rect x="96" y="32" width="32" height="128" class="filled"/>
+
+    <rect x="0" y="96" width="64" height="32" class="filled"/>
+    <rect x="32" y="96" width="32" height="64" class="filled"/>
+  </g>
+  <use href="#lilbow" transform="translate(160,320) rotate(-180) translate(-160,0)"/>
+
+</svg>

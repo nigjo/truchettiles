@@ -1,0 +1,31 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 320 320" width="64px" height="64px">
+  <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="fliesenlack.css"/>
+
+  <!-- <rect x="0" y="0" width="320" height="320" fill="lightgray"/> -->
+  
+  <g id="stern_tri" style="display:none;">
+    <path d="M160,42L56,220,264,220Z" class="out"/>
+    <path d="M160,278L56,100,264,100Z" class="out"/>
+    <!-- <path d="M160,288L288,96,32,96Z" class="out"/> -->
+  </g>
+    
+    <g style="--col:cyan;display:none;">
+      <path id="ecke" d="M160,42L192,96,128,96z" class="out"/>
+      <use href="#ecke" transform="translate(160,160) rotate(60) translate(-160,-160)"/>
+      <use href="#ecke" transform="translate(160,160) rotate(120) translate(-160,-160)"/>
+      <use href="#ecke" transform="translate(160,160) rotate(180) translate(-160,-160)"/>
+      <use href="#ecke" transform="translate(160,160) rotate(240) translate(-160,-160)"/>
+      <use href="#ecke" transform="translate(160,160) rotate(300) translate(-160,-160)"/>
+    </g>
+    <g style="--col2:red;">
+      <path id="eckeB" d="M160,0L320,160,0,160z" class="filled"/>
+      <path id="eckeB" d="M160,320L320,160,0,160z" class="bg"/>
+      <!-- <use href="#ecke" transform="translate(160,160) rotate(60) translate(-160,-160)"/> -->
+      <!-- <use href="#ecke" transform="translate(160,160) rotate(120) translate(-160,-160)"/> -->
+      <!-- <use href="#ecke" transform="translate(160,160) rotate(180) translate(-160,-160)"/> -->
+      <!-- <use href="#ecke" transform="translate(160,160) rotate(240) translate(-160,-160)"/> -->
+      <!-- <use href="#ecke" transform="translate(160,160) rotate(300) translate(-160,-160)"/> -->
+    </g>
+
+</svg>
