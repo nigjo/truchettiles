@@ -39,10 +39,16 @@
     <footer>&copy; Jens Hofschröer 2023 - <a href="https://github.com/nigjo/truchettiles">GitHub Project</footer>
     <script>
       let viewer = document.getElementById('viewer');
-      loadTiles()
-        .then(ids=>ids.forEach(id=>addSampleTo(viewer,id)));
-      loadPatterns()
-        .then(createAllPatterns);
+      Promise.all([
+        loadTiles(),
+        loadPatterns()
+      ]).then(data=>{
+        let ids = data[0];
+        ids.forEach(id=>addSampleTo(viewer,id));
+        createAllPatterns(data[1]);
+      }).catch(e=>{
+        document.getElementById('tiles').innerHTML = "<p>"+e+'</p>';
+      });
     </script>
   </body>
 </html>
