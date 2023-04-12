@@ -44,7 +44,7 @@
         loadPatterns()
       ]).then(data=>{
         let ids = data[0];
-        ids.forEach(id=>addSampleTo(viewer,id));
+        ids.forEach(id=>addSampleTo(viewer,id, mirrorWidth, mirrorHeight));
         createAllPatterns(data[1]);
       }).catch(e=>{
         document.getElementById('tiles').innerHTML = "<p>"+e+'</p>';

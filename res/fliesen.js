@@ -19,32 +19,38 @@ function copy(type, winkel, parent) {
   parent.append(cpy);
 }
 
-function addSampleTo(target, type) {
+function addSampleTo(target, type, width, height) {
   // //console.debug(type, target);
-  let mirror = makeTileMirror(type);
+  let mirror = makeTileMirror(type, width, height);
   target.append(mirror);
   // return mirror;
 }
 
-function makeTileMirror(type) {
+function makeTileMirror(type, width, height) {
   if(!("tilepattern" in window) && tilepatterns)
     window.tilepattern = Object.values(tilepatterns)[0];
   if(window.tilepattern){
-    return makeMirrorFromPattern(type, window.tilepattern);
+    return makeMirrorFromPattern(type, window.tilepattern, width, height);
   }else{
     console.warn("kein pattern definiert");
   }
 }
 
-function makeMirrorFromPattern(tile, pattern) {
+function makeMirrorFromPattern(tile, pattern, displayWidth, displayHeight) {
   let mirror = document.createElement('div');
   mirror.className = "spiegel";
   mirror.dataset.type = tile;
   //console.debug(document.currentScript, type);
-  for (let row of pattern) {
+  let patternW = pattern[0].length;
+  let patternH = pattern.length;
+  displayWidth = displayWidth?displayWidth:patternW;
+  displayHeight = displayHeight?displayHeight:patternH;
+  
+  for(let r=0;r<displayHeight;r++) {
     let rowdiv = document.createElement('div');
     rowdiv.className = 'sample';
-    for (let cell of row) {
+    for (let c=0;c<displayWidth;c++) {
+      let cell = pattern[r%patternH][c%patternW]
       copy(tile, 90 * cell, rowdiv);
     }
     mirror.append(rowdiv);
@@ -154,12 +160,12 @@ function updatePattern(){
   window.tilepattern = tilepatterns[name];
   let viewer = document.querySelector(".spiegelsaal");
   for(let spiegel of viewer.querySelectorAll(".spiegel")){
-    updateSinglePattern(spiegel, tilepattern);
+    updateSinglePattern(spiegel, tilepattern, mirrorWidth, mirrorHeight);
   }
 }
 
-function replaceMirror(original, tile){
-  let mirror = makeTileMirror(tile);
+function replaceMirror(original, tile, width, height){
+  let mirror = makeTileMirror(tile, width, height);
   mirror.onclick = original.onclick;
   mirror.id = original.id;
   original.replaceWith(mirror);
@@ -168,18 +174,21 @@ function replaceMirror(original, tile){
 
 function updateSinglePattern(target, pattern, displayWidth, displayHeight){
   //console.debug(target);
-  displayWidth = displayWidth | pattern[0].length;
-  displayHeight = displayHeight | pattern.length;
+  let patternW = pattern[0].length;
+  let patternH = pattern.length;
+  displayWidth = displayWidth?displayWidth:patternW;
+  displayHeight = displayHeight?displayHeight:patternH;
+  //console.debug(target, displayWidth, displayHeight);
   
   let samples = target.querySelectorAll(".sample");
   if(displayHeight!==samples.length
     || displayWidth!==samples[0].children.length){
-    replaceMirror(target, target.dataset.type);
+    replaceMirror(target, target.dataset.type,displayWidth,displayHeight);
   } else {
-    for(let r=0;r<pattern.length;r++){
+    for(let r=0;r<displayHeight;r++){
       //console.debug(r,samples[r]);
       for(let c=0;c<displayWidth;c++){
-        let winkel = 90*pattern[r][c];
+        let winkel = 90*pattern[r%patternH][c%patternW];
         samples[r].children[c]
           // .style.transform = "rotate(" + winkel + "deg)";
           .setAttribute('transform', "rotate(" + winkel + ")");
