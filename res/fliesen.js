@@ -52,61 +52,63 @@ function makeMirrorFromPattern(tile, pattern) {
   return mirror;
 }
 
+function setTiles(tiles){
+  console.log("creating tiles")
+  let editor = document.getElementById("tiles");
+  let loaded=[];
+  let tileElements=[];
+  for(let tile of tiles){
+    let o = document.createElement('object');
+    o.className = 'fliese';
+    o.id = tile.substring(tile.indexOf('/')+1);
+    o.type = 'image/svg+xml';
+    o.data = tile+'.svg';
+    loaded.push(new Promise((ok,no)=>{
+      o.onload = ()=>ok(o);
+    }));
+    tileElements.push(o);
+  }
+  editor.append(...tileElements);
+  console.log("waiting for tiles to load")
+  return Promise.all(loaded)
+    .then(objects=>{
+      console.log("tiles loaded")
+      let tileIds=[]
+      for(let tile of objects){
+        if(tile.contentDocument){
+          let svg = tile.contentDocument.rootElement.cloneNode(true);
+          svg.id = tile.id;
+          svg.setAttribute('class','fliese');
+          svg.onclick = toggleTile;
+          [...svg.querySelectorAll('link')].forEach(s=>s.remove());
+          //console.log(svg);
+          let wrap=document.createElement('div');
+          wrap.className="fliese";
+          wrap.append(svg);
+          wrap.dataset.type = svg.id;
+          tile.replaceWith(wrap);
+          tileIds.push(tile.id);
+        }else{
+          console.warn("unable to load tile "+tile.id);
+        }
+      }
+      editor.querySelectorAll(":scope>*:not(.fliese)")
+        .forEach(e=>e.remove());
+      console.log("tiles prepared")
+
+      return tileIds;
+    });
+}
 
 function loadTiles(){
-  let editor = document.getElementById("tiles");
   //let scriptSelf = current = document.currentScript;
   return fetch('fliesen.json')
     .then(e=>e.ok?e.json():[])
-    .then(tiles=>{
-      console.log("creating tiles")
-      let loaded=[];
-      let tileElements=[];
-      for(let tile of tiles){
-        let o = document.createElement('object');
-        o.className = 'fliese';
-        o.id = tile.substring(tile.indexOf('/')+1);
-        o.type = 'image/svg+xml';
-        o.data = tile+'.svg';
-        loaded.push(new Promise((ok,no)=>{
-          o.onload = ()=>ok(o);
-        }));
-        tileElements.push(o);
-      }
-      editor.append(...tileElements);
-      console.log("waiting for tiles to load")
-      return Promise.all(loaded)
-        .then(objects=>{
-          console.log("tiles loaded")
-          let tileIds=[]
-          for(let tile of objects){
-            if(tile.contentDocument){
-              let svg = tile.contentDocument.rootElement.cloneNode(true);
-              svg.id = tile.id;
-              svg.setAttribute('class','fliese');
-              svg.onclick = toggleTile;
-              [...svg.querySelectorAll('link')].forEach(s=>s.remove());
-              //console.log(svg);
-              let wrap=document.createElement('div');
-              wrap.className="fliese";
-              wrap.append(svg);
-              wrap.dataset.type = svg.id;
-              tile.replaceWith(wrap);
-              tileIds.push(tile.id);
-            }else{
-              console.warn("unable to load tile "+tile.id);
-            }
-          }
-          editor.querySelectorAll(":scope>*:not(.fliese)")
-            .forEach(e=>e.remove());
-          console.log("tiles prepared")
-
-          return tileIds;
-        });
-    })
+    .then(setTiles)
     .catch(e=>{
       //meist, wenn ohne per file:// geladen wurde.
-      editor.textContent = ""+e;
+      console.warn('loadTiles', e);
+      throw e;
     });
 }
 
@@ -118,11 +120,13 @@ function toggleTile(evt){
 
 function loadPatterns(){
   return fetch('pattern.json')
-    .then(e=>e.ok?e.json():[])
+    .then(e=>{console.debug('pattern', e);return e;})
+    .then(e=>e.ok?e.json():{})
     .then(p=>window.tilepatterns = p)
     .catch(e=>{
-      console.warn(e);
-      window.tilepattern = [];
+      console.warn('loadPatterns', e);
+      window.tilepattern = {};
+      throw e;
     });
 }
 
