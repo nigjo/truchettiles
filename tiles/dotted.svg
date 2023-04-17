@@ -1,0 +1,13 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 320 320" width="128px" height="128px">
+  <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="fliesenlack.css"/>
+  
+  <g class="bg out">
+    <circle cy="80" cx="48" r="32"/>
+    <circle cy="120" cx="132" r="32"/>
+    <circle cy="188" cx="200" r="32"/>
+    <circle cy="272" cx="240" r="32"/>
+    
+    <circle cy="40" cx="280" r="32"/>
+  </g>
+</svg>
