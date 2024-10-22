@@ -7,6 +7,16 @@
     <link rel="stylesheet" href="res/fliesen.css">
     <script src="res/fliesen.js"></script>
     <script src="res/editor.js"></script>
+    <script>
+    function toggleMainClass(input){
+      let main = document.querySelector("main");
+      if(input.checked){
+        main.classList.add(input.dataset.class);
+      }else{
+        main.classList.remove(input.dataset.class);
+      }
+    }
+    </script>
   </head>
   <body>
     <header><h1>Truchet Fliesen</h1></header>
@@ -17,15 +27,18 @@
     </nav>
     <main>
     <div id="tiles"></div>
-    <div id="editor" class="spiegelsaal"></div>
-    <div id="output"></div>
-    <div id="merged" class="spiegel"></div>
     <div id="options">
+      <div class="row">
+<label><input type="checkbox" data-class="grid" onclick="toggleMainClass(this)"> Gitternetz</label>
+      </div>
       <div class="row">
         <select id="patternType" onchange="updatePattern()"><option>default</select>
       </div>
       <div><input type="button" value="Hintergrund setzen" onclick="createBackground()"></div>
     </div>
+    <div id="editor" class="spiegelsaal"></div>
+    <div id="output"></div>
+    <div id="merged" class="spiegel"></div>
     </main>
     <footer>&copy; Jens Hofschröer 2023 - <a href="https://github.com/nigjo/truchettiles">GitHub Project</footer>
     <script>
