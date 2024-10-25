@@ -1,3 +1,5 @@
+'use strict';
+
 function toggleTile(evt){
   let tile = evt.target.closest(".fliese");
   replaceEditorSample(tile.id);
@@ -29,6 +31,7 @@ function rotateTile(evt){
   writeOutput(window.tilepattern);
 }
 function writeOutput(pattern){
+  const output = document.getElementById('output');
   output.textContent = '"newpattern":\n  [';
   let raw = pattern.flat();
   let patternW = window.tilepattern[0].length;
@@ -37,11 +40,11 @@ function writeOutput(pattern){
   raw.forEach((r,i)=>{
     line+=
          (i>0?', ':'')
-        +(i%patternW==0?'\n    ':'')
-        +(i%patternW==0?'[':'')
+        +(i%patternW===0?'\n    ':'')
+        +(i%patternW===0?'[':'')
         +r
-        +(i%patternW==(patternW-1)?']':'')
-  })
+        +(i%patternW===(patternW-1)?']':'');
+  });
   output.textContent += line+'\n  ]';
 }
 function createMirrors(pattern){
@@ -74,7 +77,7 @@ function initEditor(data){
 }
 function createCustom(pattern){
 
-  pattern["custom"] = []
+  pattern["custom"] = [];
   for(var j=0;j<mirrorHeight;j++){
     let row = [];
     for(var i=0;i<mirrorWidth;i++){
