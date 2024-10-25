@@ -16,6 +16,10 @@ function rotateTile(evt) {
   if (!tile) {
     return;
   }
+
+  if (!isCustom())
+    setCustom();
+
   //console.debug(tile);
   let parent = tile.parentNode;
   let c = [...parent.children].indexOf(tile);
@@ -95,6 +99,34 @@ function createCustom(pattern) {
   console.log("custom pattern selected");
 
   return pattern;
+}
+
+function isCustom() {
+  return document.getElementById("patternType").value === 'custom';
+}
+
+function setCustom() {
+  console.debug('CUSTOM', 'currentPattern', window.tilepattern);
+  let patternW = window.tilepattern[0].length;
+  let patternH = window.tilepattern.length;
+  console.debug('CUSTOM', patternW, patternH);
+
+  if (patternW !== mirrorWidth
+          || patternH !== mirrorHeight) {
+    let nextCustom = [];
+    for (var j = 0; j < mirrorHeight; j++) {
+      let row = [];
+      for (var i = 0; i < mirrorWidth; i++) {
+        row[i] = window.tilepattern[j % patternH][i % patternW];
+      }
+      nextCustom[j] = row;
+    }
+
+    window.tilepatterns['custom'] = nextCustom;
+    window.tilepattern = window.tilepatterns['custom'];
+  }
+
+  return document.getElementById("patternType").value = 'custom';
 }
 
 function createBackground() {
