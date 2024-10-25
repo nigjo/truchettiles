@@ -150,7 +150,7 @@ function createBackground() {
             //let img = document.createElement('img');
             //img.alt = 'tile mirror '+source.dataset.type+'';
             //+window.btoa(unescape(encodeURIComponent(merged.outerHTML)));
-            svgdata = 'data:image/svg+xml;base64,'
+            let svgdata = 'data:image/svg+xml;base64,'
                     + btoa(unescape(encodeURIComponent(merged.outerHTML)));
             //img.style.backgroundColor = 'white';
             //target.replaceChildren(img);
