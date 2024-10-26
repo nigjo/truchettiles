@@ -29,12 +29,18 @@
     <div id="tiles"></div>
     <div id="options">
       <div class="row">
-<label><input type="checkbox" data-class="grid" checked onclick="toggleMainClass(this)"> Gitternetz</label>
+        <label>
+          <input type="checkbox" data-class="grid" checked onclick="toggleMainClass(this)">
+          Gitternetz
+        </label>
       </div>
       <div class="row">
-        <select id="patternType" onchange="updatePattern()"><option>default</select>
+        <label>Vorlage <select id="patternType" onchange="updatePattern()"><option>default</select></label>
       </div>
-      <div><input type="button" value="Hintergrund setzen" onclick="createBackground()"></div>
+      <div>
+        <input type="button" value="Hintergrund setzen" onclick="createBackground()">
+        <input type="button" value="Hintergrund löschen" onclick="document.body.style.backgroundImage=null">
+      </div>
     </div>
     <div id="editor" class="spiegelsaal"></div>
     <div id="output"></div>
