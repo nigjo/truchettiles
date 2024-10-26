@@ -7,7 +7,7 @@ function toggleTile(evt) {
 
 function replaceEditorSample(tile) {
   let mirror = replaceMirror(
-          document.getElementById("editorSample"), tile);
+          document.getElementById("editorSample"), tile, mirrorWidth, mirrorHeight);
 }
 
 function rotateTile(evt) {
