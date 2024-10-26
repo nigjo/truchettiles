@@ -29,8 +29,10 @@ function rotateTile(evt) {
   window.tilepattern[r][c] = (window.tilepattern[r][c] + 1) % 4;
   //console.debug(window.workcopy[r][c]);
 
-  updateSinglePattern(tile.closest('.spiegel'), window.tilepattern);
-  updateSinglePattern(document.getElementById("editorSample"), window.tilepattern);
+  updateSinglePattern(tile.closest('.spiegel'), window.tilepattern,
+  mirrorWidth, mirrorHeight);
+  updateSinglePattern(document.getElementById("editorSample"), window.tilepattern,
+  mirrorWidth, mirrorHeight);
 
   writeOutput(window.tilepattern);
 }
@@ -159,4 +161,21 @@ function createBackground() {
           })
           .catch(console.warn);
 
+}
+
+function updateEditorSize(event) {
+  let nextW = document.querySelector('input[name=mirrorWidth]').value;
+  let nextH = document.querySelector('input[name=mirrorHeight]').value;
+  if (nextH !== mirrorHeight || nextW !== mirrorWidth) {
+    window.mirrorWidth = nextW;
+    window.mirrorHeight = nextH;
+    setCustom();
+    let editor = document.querySelector("#editor .spiegel");
+    replaceMirror(
+            editor, editor.dataset.type, nextW, nextH);
+    let view = document.getElementById("editorSample");
+    replaceMirror(
+            view, view.dataset.type, nextW, nextH);
+    writeOutput(window.tilepattern);
+  }
 }

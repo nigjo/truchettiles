@@ -35,6 +35,10 @@
         </label>
       </div>
       <div class="row">
+        <label>Breite <input name="mirrorWidth" type="number" min="1" max="24" inputmode="decimal" value="12" onchange="updateEditorSize(event)"></label>
+        <label>Höhe <input name="mirrorHeight" type="number" min="1" max="24" inputmode="decimal" value="8" onchange="updateEditorSize(event)"></label>
+      </div>
+      <div class="row">
         <label>Vorlage <select id="patternType" onchange="updatePattern()"><option>default</select></label>
       </div>
       <div>

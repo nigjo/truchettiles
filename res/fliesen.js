@@ -1,5 +1,5 @@
-const mirrorWidth = 12;
-const mirrorHeight = 8;
+window.mirrorWidth = 12;
+window.mirrorHeight = 8;
 
 function copy(type, winkel, parent) {
   let src = document.getElementById(type);
