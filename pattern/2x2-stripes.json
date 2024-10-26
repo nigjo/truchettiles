@@ -1,0 +1,9 @@
+{
+  "name":"stripes",
+  "position": 1040,
+  "pattern":
+  [
+    [0, 2], 
+    [2, 0]
+  ]
+}

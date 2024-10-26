@@ -1,6 +1,7 @@
 @echo off
 setlocal
 
+cd /D "%~dp0.."
 if exist pattern.json call :scanCurrent
 
 for %%P in (pattern\*.json) do if not defined pattern_%%~nxP (
@@ -29,7 +30,7 @@ goto :eof
 :addPattern
 set /a maxnum+=40
 call :setPattern %maxnum% %1
-echo ** %1 = %maxnum%
+echo ** %1:  "position": %maxnum%,
 
 goto :eof
 :scanCurrent
