@@ -1,145 +1,26 @@
-{
-  "default":
-  [
-    [0, 0, 0, 0, 0, 1, 3, 2],
-    [2, 3, 1, 2, 2, 3, 1, 0],
-    [1, 0, 0, 3, 3, 2, 0, 1],
-    [2, 3, 1, 2, 1, 0, 3, 2]
-  ],
-  "snake":
-  [
-    [0, 0, 1, 1], 
-    [3, 2, 3, 2]
-  ],
-  "zero":
-  [
-    [0]
-  ],
-  "rotated":
-  [
-    [0, 1],
-    [3, 2]
-  ],
-  "rotated inv":
-  [
-    [3, 2],
-    [0, 1]
-  ],
-  "rotated 3":
-  [
-    [0, 3, 2, 1],
-    [1, 2, 3, 0],
-    [2, 1, 0, 3],
-    [3, 0, 1, 2]
-  ],
-  "rotate big":
-  [
-    [2, 2, 3, 3],
-    [2, 2, 3, 3],
-    [1, 1, 0, 0],
-    [1, 1, 0, 0]
-  ],
-  "windmill":
-  [
-    [1, 2],
-    [0, 3]
-  ],
-  "zigzak":
-  [
-    [0, 1, 3, 2],
-    [2, 3, 1, 0]
-  ],
-  "zigzak big":
-  [
-    [3, 1, 3, 1, 0, 2, 0, 2],
-    [1, 3, 1, 3, 2, 0, 2, 0]
-  ],
-  "zigzak wave":
-  [
-    [2, 3], 
-    [0, 1]
-  ],
-  "zigzak wave inv":
-  [
-    [0, 3], 
-    [2, 1]
-  ],
-  "waves":
-  [
-    [0, 3, 2, 1], 
-    [2, 1, 0, 3]
-  ],
-  "circles":
-  [
-    [2, 0, 1, 3],
-    [0, 2, 3, 1],
-    [3, 1, 0, 2],
-    [1, 3, 2, 0]
-  ],
-  "circle mirror":
-  [
-    [2, 0, 1, 3],
-    [0, 2, 3, 1],
-    [1, 3, 2, 0],
-    [3, 1, 0, 2]
-  ],
-  "shadow":
-  [
-    [2, 2, 3, 3],
-    [2, 2, 3, 3],
-    [3, 3, 2, 2],
-    [3, 3, 2, 2]
-  ],
-  "shadow flipped":
-  [
-    [0, 0, 1, 1],
-    [0, 0, 1, 1],
-    [1, 1, 0, 0],
-    [1, 1, 0, 0]
-  ],
-  "offset":
-  [
-    [1,2,2,1],
-    [0,3,1,2],
-    [2,1,1,2],
-    [1,2,0,3]
-  ],
-  "bavaria":
-  [
-    [2, 2, 0, 0], 
-    [0, 0, 2, 2]
-  ],
-  "maze":
-  [
-    [1, 2, 1, 2, 2, 1, 2, 1], 
-    [0, 3, 0, 3, 1, 3, 0, 2], 
-    [0, 2, 1, 3, 1, 2, 1, 2], 
-    [3, 0, 3, 0, 0, 3, 0, 3]
-  ],
-  "veritcal-horizontal":
-  [
-    [1, 0, 0, 3], 
-    [1, 2, 2, 3]
-  ],
-  "target":
-  [
-    [2, 3, 2, 3], 
-    [1, 2, 3, 0], 
-    [2, 1, 0, 3], 
-    [1, 0, 1, 0]
-  ],
-  "WM":
-  [
-    [2, 2, 3, 3, 2, 3, 2, 3], 
-    [1, 0, 1, 0, 1, 1, 0, 0], 
-    [2, 3, 2, 3, 2, 2, 3, 3], 
-    [1, 1, 0, 0, 1, 0, 1, 0]
-  ],
-  "joke":
-  [
-    [3, 2, 3, 2, 3, 3, 2, 3], 
-    [2, 3, 3, 3, 3, 3, 3, 3], 
-    [3, 3, 2, 3, 3, 2, 3, 2], 
-    [3, 3, 3, 3, 2, 3, 3, 3]
-  ]
-}
+[
+ "pattern/8x4-default.json"
+,"pattern/4x2-snake.json"
+,"pattern/1x1-zero.json"
+,"pattern/2x2-rotated.json"
+,"pattern/2x2-rotated_inv.json"
+,"pattern/4x4-rotated_3.json"
+,"pattern/4x4-rotate_big.json"
+,"pattern/2x2-windmill.json"
+,"pattern/4x2-zigzak.json"
+,"pattern/8x2-zigzak_big.json"
+,"pattern/2x2-zigzak_wave.json"
+,"pattern/2x2-zigzak_wave_inv.json"
+,"pattern/4x2-waves.json"
+,"pattern/4x4-circles.json"
+,"pattern/4x4-circle_mirror.json"
+,"pattern/4x4-shadow.json"
+,"pattern/4x4-shadow_flipped.json"
+,"pattern/4x4-offset.json"
+,"pattern/4x2-bavaria.json"
+,"pattern/8x4-maze.json"
+,"pattern/4x2-veritcal-horizontal.json"
+,"pattern/4x4-target.json"
+,"pattern/8x4-WM.json"
+,"pattern/8x4-joke.json"
+]

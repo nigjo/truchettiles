@@ -124,16 +124,31 @@ function toggleTile(evt){
 
 }
 
-function loadPatterns(){
-  return fetch('pattern.json')
-    .then(e=>{console.debug('pattern', e);return e;})
-    .then(e=>e.ok?e.json():{})
-    .then(p=>window.tilepatterns = p)
-    .catch(e=>{
-      console.warn('loadPatterns', e);
-      window.tilepattern = {};
-      throw e;
-    });
+function loadPatterns() {
+  return fetch('pattern.json').then(e =>
+    e.ok ? e.json() : {}
+  ).then(list => {
+    return Promise.all(
+            list.map(name => {
+              return fetch(name).then(
+                      r => r.ok ? r.json() : {}
+              );
+            }));
+  }).then(patterns => {
+    let p = {};
+    for (const pattern of patterns) {
+      console.debug(pattern);
+      if ("name" in pattern)
+        p[pattern.name] = pattern.pattern;
+    }
+    return p;
+  }).then(p =>
+    window.tilepatterns = p
+  ).catch(e => {
+    console.warn('loadPatterns', e);
+    window.tilepattern = {};
+    throw e;
+  });
 }
 
 function createAllPatterns(pattern){
