@@ -19,34 +19,36 @@ body{
   margin: .5em;
   grid-template-columns: 1fr;
   border:1px solid var(--grid);
-}
-.spiegel:after{
-  content:attr(data-type);
-  font-size:.66em;
-  position:absolute;
-  bottom:-1.2em;
-  right:0em;
-  color:dimgray;
+  &:after{
+    content:attr(data-type);
+    font-size:.66em;
+    position:absolute;
+    bottom:-1.2em;
+    right:0em;
+    color:dimgray;
+  }
+  svg {
+    box-sizing:border-box;
+  }
 }
 .sample{
   display:flex;
 }
-.spiegel svg{
-  box-sizing:border-box;
-}
-#tiles div.fliese{
-  border:1px solid var(--grid);
-  margin-right:1em;
-  margin-bottom:.5em;
-  position:relative;
-}
-#tiles div.fliese:after{
-  content: attr(data-type);
-  position:absolute;
-  font-size:.5em;
-  color:dimgray;
-  bottom:-1.25em;
-  right:0em;
+#tiles {
+  div.fliese{
+    border:1px solid var(--grid);
+    margin-right:1em;
+    margin-bottom:.5em;
+    position:relative;
+    &:after{
+      content: attr(data-type);
+      position:absolute;
+      font-size:.5em;
+      color:dimgray;
+      bottom:-1.25em;
+      right:0em;
+    }
+  }
 }
 main.grid .spiegelsaal .fliese {
   border:1px solid var(--grid);
