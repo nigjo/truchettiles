@@ -38,20 +38,21 @@ function rotateTile(evt) {
 }
 function writeOutput(pattern) {
   const output = document.getElementById('output');
-  output.textContent = '"newpattern":\n  [';
+  const name = new Date().toISOString().substring(0,10);
   let raw = pattern.flat();
   let patternW = window.tilepattern[0].length;
   let patternH = raw.length / patternW;
-  var line = '';
-  raw.forEach((r, i) => {
-    line +=
-            (i > 0 ? ', ' : '')
-            + (i % patternW === 0 ? '\n    ' : '')
-            + (i % patternW === 0 ? '[' : '')
-            + r
-            + (i % patternW === (patternW - 1) ? ']' : '');
-  });
-  output.textContent += line + '\n  ]';
+
+  output.textContent = JSON.stringify({
+            name: name,
+            width: patternW,
+            height: patternH,
+            pattern: window.tilepattern
+          }, null, 2)
+                  .replaceAll(/(\d),\n {3,}/g, '$1, ')
+                  .replaceAll(/(\d)\n\s+/g, '$1')
+                  .replaceAll(/\[\s+(\d)/g, '[$1')
+                  +'\n';
 }
 function createMirrors(pattern) {
   let editor = makeTileMirror("arrow");
