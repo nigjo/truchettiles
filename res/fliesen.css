@@ -56,4 +56,19 @@ main.grid .spiegelsaal .fliese {
 #output{
   font-family: Consolas,Courier New,monospace;
   white-space:pre;
+  padding: .5em;
+  background-color: rgba(255,255,255,.9);
+  display: inline-block;
+}
+#outputDL{
+  display: inline-block;
+  a{text-decoration: none;}
+}
+#output:empty+#outputDL{
+  display: none;
+}
+footer {
+  margin-top: 1em;
+  background-color: rgba(255,255,255,.75);
+  padding: .5em;
 }

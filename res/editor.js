@@ -30,29 +30,45 @@ function rotateTile(evt) {
   //console.debug(window.workcopy[r][c]);
 
   updateSinglePattern(tile.closest('.spiegel'), window.tilepattern,
-  mirrorWidth, mirrorHeight);
+          mirrorWidth, mirrorHeight);
   updateSinglePattern(document.getElementById("editorSample"), window.tilepattern,
-  mirrorWidth, mirrorHeight);
+          mirrorWidth, mirrorHeight);
 
   writeOutput(window.tilepattern);
 }
 function writeOutput(pattern) {
   const output = document.getElementById('output');
-  const name = new Date().toISOString().substring(0,10);
+  const name = 'custom_' + new Date().toISOString().substring(0, 10);
   let raw = pattern.flat();
   let patternW = window.tilepattern[0].length;
   let patternH = raw.length / patternW;
 
   output.textContent = JSON.stringify({
-            name: name,
-            width: patternW,
-            height: patternH,
-            pattern: window.tilepattern
-          }, null, 2)
-                  .replaceAll(/(\d),\n {3,}/g, '$1, ')
-                  .replaceAll(/(\d)\n\s+/g, '$1')
-                  .replaceAll(/\[\s+(\d)/g, '[$1')
-                  +'\n';
+    name: name,
+    width: patternW,
+    height: patternH,
+    pattern: window.tilepattern
+  }, null, 2)
+          .replaceAll(/(\d),\n {3,}/g, '$1, ')
+          .replaceAll(/(\d)\n\s+/g, '$1')
+          .replaceAll(/\[\s+(\d)/g, '[$1')
+          + '\n';
+}
+function downloadOutput(event) {
+  const output = document.getElementById('output');
+  console.log(event);
+  let data = new Blob([
+    output.textContent
+  ], {
+    type: 'application/json;charset=utf8'
+  });
+  let outputData = JSON.parse(output.textContent);
+
+  event.target.href = URL.createObjectURL(data);
+  event.target.download =
+          outputData.width + 'x' + outputData.height
+          + '-' + outputData.name + '.json';
+  //event.preventDefault();
 }
 function createMirrors(pattern) {
   let editor = makeTileMirror("arrow");
