@@ -1,0 +1,10 @@
+{
+  "name": "zigzak wave",
+  "position": 440,
+  "width": 2,
+  "height": 2,
+  "pattern": [
+    [2, 3],
+    [0, 1]
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "veritcal-horizontal",
+  "position": 840,
+  "width": 4,
+  "height": 2,
+  "pattern": [
+    [1, 0, 0, 3],
+    [1, 2, 2, 3]
+  ]
+}

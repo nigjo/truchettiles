@@ -1,0 +1,12 @@
+{
+  "name": "shadow flipped",
+  "position": 680,
+  "width": 4,
+  "height": 4,
+  "pattern": [
+    [0, 0, 1, 1],
+    [0, 0, 1, 1],
+    [1, 1, 0, 0],
+    [1, 1, 0, 0]
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "waves",
+  "position": 520,
+  "width": 4,
+  "height": 2,
+  "pattern": [
+    [0, 3, 2, 1],
+    [2, 1, 0, 3]
+  ]
+}

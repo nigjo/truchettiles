@@ -1,0 +1,10 @@
+{
+  "name": "rotated inv",
+  "position": 200,
+  "width": 2,
+  "height": 2,
+  "pattern": [
+    [3, 2],
+    [0, 1]
+  ]
+}

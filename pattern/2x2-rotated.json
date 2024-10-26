@@ -1,0 +1,10 @@
+{
+  "name": "rotated",
+  "position": 160,
+  "width": 2,
+  "height": 2,
+  "pattern": [
+    [0, 1],
+    [3, 2]
+  ]
+}

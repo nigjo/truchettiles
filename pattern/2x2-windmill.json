@@ -1,0 +1,10 @@
+{
+  "name": "windmill",
+  "position": 320,
+  "width": 2,
+  "height": 2,
+  "pattern": [
+    [1, 2],
+    [0, 3]
+  ]
+}
