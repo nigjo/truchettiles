@@ -1,5 +1,7 @@
 [
- "tiles/dotted"
+ "tiles/half"
+,"tiles/dart"
+,"tiles/dotted"
 ,"tiles/curves"
 ,"tiles/shipsign"
 ,"tiles/brokenshield"
