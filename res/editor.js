@@ -29,7 +29,7 @@ function rotateTile(evt) {
   window.tilepattern[r][c] = (window.tilepattern[r][c] + 1) % 4;
   //console.debug(window.workcopy[r][c]);
 
-  updateSinglePattern(tile.closest('.spiegel'), window.tilepattern,
+  updateSinglePattern(document.getElementById("editorArrows"), window.tilepattern,
           mirrorWidth, mirrorHeight);
   updateSinglePattern(document.getElementById("editorSample"), window.tilepattern,
           mirrorWidth, mirrorHeight);
@@ -72,6 +72,7 @@ function downloadOutput(event) {
 }
 function createMirrors(pattern) {
   let editor = makeTileMirror("arrow");
+  editor.id="editorArrows";
   editor.classList.add("tilehover");
   editor.onclick = rotateTile;
   document.getElementById("editor").append(editor);
@@ -80,6 +81,7 @@ function createMirrors(pattern) {
 
   let editorSample = makeTileMirror(pattern);
   editorSample.id = "editorSample";
+  editorSample.onclick = rotateTile;
   //console.debug('createMirrors', editorSample);
   document.getElementById("editor").append(editorSample);
 }
