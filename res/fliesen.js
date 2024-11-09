@@ -258,7 +258,7 @@ function mergeSvg(spiegel) {
       let pos = patternViewW * block + tile;
       let x = vpW * (pos % patternViewW);
       let y = vpH * Math.floor(pos / patternViewW);
-      console.debug(pos, block, tile, y, x);
+      //console.debug(pos, block, tile, y, x);
       let g = document.createElementNS(SVGNS, 'g');
       g.setAttribute('clip-path', 'url(#tileClip)');
 
