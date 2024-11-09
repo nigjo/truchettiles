@@ -1,0 +1,14 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 320 320" width="128px" height="128px">
+  <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="fliesenlack.css"/>
+  
+  <!--<path class="out" d="M64,0L192,128,128,192,0,64"/>-->
+  <path class="out" d="M64,0L224,160,160,224,0,64"/>
+  <line class="out" x1="256" y1="0" x2="320" y2="64"/>
+  <line class="out" x1="0" y1="256" x2="64" y2="320"/>
+  <line class="out" x1="256" y1="320" x2="320" y2="256"/>
+  
+  <!--<line class="out" x1="64" y1="320" x2="320" y2="64"/>-->
+  
+</svg>
+
