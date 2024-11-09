@@ -163,7 +163,12 @@ function createBackground() {
             //console.log(css);
 
             let style = document.createElementNS(SVGNS, 'style');
-            style.textContent = css;
+            style.textContent = 
+                    css
+                    .replace(/^\s+/gm,'')
+                    .replaceAll(': ',':')
+                    .replaceAll(/\r?\n|\r/gm,'')
+            ;
             merged.insertAdjacentElement('afterbegin', style);
 
             //console.debug(merged.outerHTML);
