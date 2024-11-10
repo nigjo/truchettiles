@@ -11,7 +11,7 @@ for /F "delims=*" %%S in ('dir /b/o:-d tiles\*.svg') do (
 )
 
 REM set names~
-REM set tiles~
+REM set tile~
 
 set "komma= "
 echo [>fliesen.json
@@ -21,6 +21,7 @@ echo ]>>fliesen.json
 
 goto :eof
 :add
+>&2 echo adding "%~n1"
 echo %komma%"tiles/%~n1"
 set komma=,
 
@@ -39,6 +40,6 @@ goto :eof
 REM for /F %%D in (fliesen.json) do echo ##%%D##
 set counter=5000
 for /F delims^=^"^ tokens^=2 %%D in (fliesen.json) do (
- set /a counter+=1
+ set /a counter+=10
  call :define %%D
 )
