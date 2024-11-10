@@ -1,5 +1,6 @@
 {
   "name": "snake",
+  "preferredTile": "worm-gray",
   "position": 80,
   "width": 4,
   "height": 2,

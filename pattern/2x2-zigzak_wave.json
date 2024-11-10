@@ -1,5 +1,6 @@
 {
   "name": "zigzak wave",
+  "preferredTile": "worm",
   "position": 440,
   "width": 2,
   "height": 2,

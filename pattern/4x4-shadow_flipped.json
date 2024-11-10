@@ -1,5 +1,6 @@
 {
   "name": "shadow flipped",
+  "preferredTile": "shadow",
   "position": 680,
   "width": 4,
   "height": 4,

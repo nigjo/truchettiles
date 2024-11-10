@@ -1,5 +1,6 @@
 {
   "name": "flower",
+  "preferredTile": "dotted",
   "position": 1000,
   "width": 4,
   "height": 4,

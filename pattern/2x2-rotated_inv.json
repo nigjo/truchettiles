@@ -1,5 +1,6 @@
 {
   "name": "rotated inv",
+  "preferredTile": "friesen",
   "position": 200,
   "width": 2,
   "height": 2,

@@ -1,5 +1,6 @@
 {
   "name": "rotated",
+  "preferredTile": "friesen2",
   "position": 160,
   "width": 2,
   "height": 2,

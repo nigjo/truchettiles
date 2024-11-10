@@ -1,5 +1,6 @@
 {
   "name": "waves",
+  "preferredTile": "diag",
   "position": 520,
   "width": 4,
   "height": 2,

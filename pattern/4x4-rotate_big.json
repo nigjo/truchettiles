@@ -1,5 +1,6 @@
 {
   "name": "rotate big",
+  "preferredTile": "smith",
   "position": 280,
   "width": 4,
   "height": 4,

@@ -1,9 +1,10 @@
 {
-"name":"wave",
-"position": 540,
-"width":2,
-"height":4,
-"pattern":
+  "name":"wave",
+  "preferredTile": "worm-gray",
+  "position": 540,
+  "width":2,
+  "height":4,
+  "pattern":
   [
     [2, 3], 
     [1, 0], 

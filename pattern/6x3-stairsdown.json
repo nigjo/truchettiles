@@ -1,5 +1,6 @@
 {
   "name": "stairs down",
+  "preferredTile": "friesen",
   "position": 1080,
   "width":6,
   "height": 3,

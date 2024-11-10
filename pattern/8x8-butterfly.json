@@ -1,5 +1,6 @@
 {
   "name": "butterfly",
+  "preferredTile": "worm-gray",
   "position": 1120,
   "width": 8,
   "height": 8,

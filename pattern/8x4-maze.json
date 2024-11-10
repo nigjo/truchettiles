@@ -1,5 +1,6 @@
 {
   "name": "maze",
+  "preferredTile": "friesen",
   "position": 800,
   "width": 8,
   "height": 4,

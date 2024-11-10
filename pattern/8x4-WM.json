@@ -1,5 +1,6 @@
 {
   "name": "WM",
+  "preferredTile": "truchet",
   "position": 920,
   "width": 8,
   "height": 4,

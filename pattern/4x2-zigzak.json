@@ -1,5 +1,6 @@
 {
   "name": "zigzak",
+  "preferredTile": "truchet",
   "position": 360,
   "width": 4,
   "height": 2,

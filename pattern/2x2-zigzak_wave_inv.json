@@ -1,5 +1,6 @@
 {
   "name": "zigzak wave inv",
+  "preferredTile": "truchet",
   "position": 480,
   "width": 2,
   "height": 2,

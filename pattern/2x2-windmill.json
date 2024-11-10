@@ -1,5 +1,6 @@
 {
   "name": "windmill",
+  "preferredTile": "half",
   "position": 320,
   "width": 2,
   "height": 2,

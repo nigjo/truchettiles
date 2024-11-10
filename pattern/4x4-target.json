@@ -1,5 +1,6 @@
 {
   "name": "target",
+  "preferredTile": "square",
   "position": 880,
   "width": 4,
   "height": 4,

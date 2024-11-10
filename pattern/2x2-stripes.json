@@ -1,5 +1,6 @@
 {
   "name":"stripes",
+  "preferredTile": "truchet",
   "position": 1040,
   "pattern":
   [

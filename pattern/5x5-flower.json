@@ -1,5 +1,6 @@
 {
   "name": "flower5",
+  "preferredTile": "flower-gray",
   "position": 1020,
   "width": 5,
   "height": 5,

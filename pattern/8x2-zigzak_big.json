@@ -1,5 +1,6 @@
 {
   "name": "zigzak big",
+  "preferredTile": "square",
   "position": 400,
   "width": 8,
   "height": 2,

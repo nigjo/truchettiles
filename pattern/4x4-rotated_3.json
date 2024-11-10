@@ -1,5 +1,6 @@
 {
   "name": "rotated 3",
+  "preferredTile": "dotted",
   "position": 240,
   "width": 4,
   "height": 4,
