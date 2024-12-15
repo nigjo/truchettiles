@@ -42,9 +42,12 @@ function writeOutput(pattern) {
   let raw = pattern.flat();
   let patternW = window.tilepattern[0].length;
   let patternH = raw.length / patternW;
+  
+  let currentTile = document.getElementById('editorSample').dataset.type;
 
   output.textContent = JSON.stringify({
     name: name,
+    preferredTile: currentTile,
     width: patternW,
     height: patternH,
     pattern: window.tilepattern
